@@ -1,0 +1,9 @@
+name = True Apex Graph
+description = Create a graph for visualization of data.
+dependencies[] = registry_autoload
+core = 7.x
+package = True Apex
+
+registry_autoload[] = PSR-4
+registry_autoload_files[] = src/Graph.php
+registry_autoload_files[] = tests/GraphUnitTest.test

@@ -1,0 +1,21 @@
+{
+    "name": "TrueApex/Graph",
+    "description": "Create a graph for visualization of data.",
+    "license": "MIT",
+    "keywords": ["graph"],
+    "authors": [
+        {
+            "name": "Romualdo Dasig",
+            "email": "das@trueapex.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\trueapex_graph\\": "src"
+        }
+    }
+}

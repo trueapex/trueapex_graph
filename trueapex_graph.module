@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * A simple self-contained function used to demonstrate unit tests.
+ *
+ * @see SimpletestUnitTestExampleTestCase
+ */
+function trueapex_graph_empty_mysql_date($date_string) {
+  $graph = new \Drupal\trueapex_graph\Graph();
+  return $graph->render($date_string);
+}

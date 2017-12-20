@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * File for testing the custom Graph module.
+ */
+
+require_once __DIR__ . "/../src/Graph.php";
+
+/**
+ * Graph Testcase.
+ *
+ * @see DrupalUnitTestCase
+ *
+ * @ingroup trueapex_graph
+ */
+class GraphUnitTest extends DrupalUnitTestCase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Graph unit tests',
+      'description' => 'Test that render function works properly.',
+      'group' => 'True Apex',
+    );
+  }
+
+  /**
+   * Set up the test environment.
+   *
+   * Note that we use drupal_load() instead of passing our module dependency
+   * to parent::setUp(). That's because we're using DrupalUnitTestCase, and
+   * thus we don't want to install the module, only load it's code.
+   *
+   * Also, DrupalUnitTestCase can't actually install modules. This is by
+   * design.
+   */
+  public function setUp() {
+    drupal_load('module', 'trueapex_graph');
+    parent::setUp();
+  }
+
+  /**
+   * Test render().
+   */
+  public function testRenderFunction() {
+    $result = trueapex_graph_empty_mysql_date(NULL);
+    $message = 'A NULL value should return TRUE.';
+    $this->assertTrue($result, $message);
+
+    $result = trueapex_graph_empty_mysql_date('');
+    $message = 'An empty string should return TRUE.';
+    $this->assertTrue($result, $message);
+
+    $result = trueapex_graph_empty_mysql_date('0000-00-00');
+    $message = 'An "empty" MySQL DATE should return TRUE.';
+    $this->assertTrue($result, $message);
+
+    $result = trueapex_graph_empty_mysql_date(date('Y-m-d'));
+    $message = 'A valid date should return FALSE.';
+    $this->assertFalse($result, $message);
+  }
+
+}

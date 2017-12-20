@@ -41,7 +41,6 @@ class GraphUnitTest extends DrupalUnitTestCase {
    */
   public function setUp() {
     drupal_load('module', 'trueapex_graph');
-    drupal_load('module', 'sert');
     parent::setUp();
   }
 

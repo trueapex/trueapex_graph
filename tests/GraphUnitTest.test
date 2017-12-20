@@ -7,6 +7,8 @@
 
 require_once __DIR__ . "/../src/Graph.php";
 
+use \Drupal\trueapex_graph\Graph;
+
 /**
  * Graph Testcase.
  *
@@ -39,28 +41,23 @@ class GraphUnitTest extends DrupalUnitTestCase {
    */
   public function setUp() {
     drupal_load('module', 'trueapex_graph');
+    drupal_load('module', 'sert');
     parent::setUp();
   }
 
   /**
-   * Test render().
+   * Test the render() function.
    */
-  public function testRenderFunction() {
-    $result = trueapex_graph_empty_mysql_date(NULL);
-    $message = 'A NULL value should return TRUE.';
-    $this->assertTrue($result, $message);
-
-    $result = trueapex_graph_empty_mysql_date('');
-    $message = 'An empty string should return TRUE.';
-    $this->assertTrue($result, $message);
-
-    $result = trueapex_graph_empty_mysql_date('0000-00-00');
+  public function testSertChartFunction() {
+    $entity = 'publication';
+    $metrics = array('');
+    
+    $graph = new Graph();
+    
+    $result = $graph->render($entity, $metrics);
+    $expected = array('id' => 'value');
     $message = 'An "empty" MySQL DATE should return TRUE.';
-    $this->assertTrue($result, $message);
-
-    $result = trueapex_graph_empty_mysql_date(date('Y-m-d'));
-    $message = 'A valid date should return FALSE.';
-    $this->assertFalse($result, $message);
+    $this->assertEqual($expected, $result, $message);
   }
 
 }

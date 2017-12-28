@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * Implements hook_menu().
+ */
+function trueapex_graph_menu() {
+  $items['trueapex/chart'] = array(
+    'title' => 'Sample chart',
+    'page callback' => 'trueapex_graph_sample',
+    'access arguments' => array('administer site configuration'),
+    'file' => 'includes/trueapex_graph.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
  * A simple self-contained function used to demonstrate unit tests.
  *
  * @see SimpletestUnitTestExampleTestCase

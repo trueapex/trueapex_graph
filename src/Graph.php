@@ -16,30 +16,31 @@ class Graph {
    *
    * @see SimpletestUnitTestExampleTestCase
    */
-  public function render($entity, $metrics = array()) {
-    $entities = array(
-      'award_submission',
-      'publication',
-      'achievement',
-      'profile2',
-    );
-    if (!in_array($entity, $entities)) {
-      drupal_set_message('Invalid entity!', 'error');
-      return FALSE;
-    }
-
-    // Get Google Charts info.
-    $charts_info = charts_info();
-
-    // Build chart.
-    $chart = array(
-      '#type' => 'chart',
-      '#chart_type' => 'column',
-      '#title' => '',
-    );
+  public function chart($entity, $metrics = array()) {
+//    $entities = array(
+//      'award_submission',
+//      'publication',
+//      'achievement',
+//      'profile2',
+//    );
+//    if (!in_array($entity, $entities)) {
+//      drupal_set_message('Invalid entity!', 'error');
+//      return FALSE;
+//    }
+//
+//    // Get Google Charts info.
+//    $charts_info = charts_info();
+//
+//    // Build chart.
+//    $chart = array(
+//      '#type' => 'chart',
+//      '#chart_type' => 'column',
+//      '#title' => '',
+//    );
 
     // Get data.
-    $chart += $this->getData($entity, $metrics);
+//    $chart += $this->getData($entity, $metrics);
+    $chart = $this->_column_simple();
 
     $chart['#chart_library'] = 'google';
     $chart['#width'] = 900;
@@ -59,6 +60,32 @@ class Graph {
     $result = array();
     
     return $result;
+  }
+
+  function _column_simple() {
+    $chart = array(
+      '#type' => 'chart',
+      '#chart_type' => 'column',
+      '#title' => t('Column simple'),
+    );
+    $chart['male'] = array(
+      '#type' => 'chart_data',
+      '#title' => t('Male'),
+      '#data' => array(10, 20, 30),
+      '#suffix' => 'lbs',
+    );
+    $chart['female'] = array(
+      '#type' => 'chart_data',
+      '#title' => t('Female'),
+      '#data' => array(12, 22, 32),
+      '#suffix' => 'lbs',
+    );
+    $chart['xaxis'] = array(
+      '#type' => 'chart_xaxis',
+      '#labels' => array('Jan', 'Feb', 'Mar'),
+    );
+
+    return $chart;
   }
   
 }
